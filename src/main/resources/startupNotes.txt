@@ -1,0 +1,1 @@
+ docker run --name contracts-psql -p 5432:5432 -e POSTGRES_DB=contracts -e POSTGRES_PASSWORD=mysecretpassword -d postgres
