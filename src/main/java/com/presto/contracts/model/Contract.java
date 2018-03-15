@@ -1,6 +1,8 @@
 package com.presto.contracts.model;
 
 
+import org.springframework.data.annotation.ReadOnlyProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -27,10 +29,12 @@ public class Contract {
     @NotNull
     private String businessNumber;
 
+    @ReadOnlyProperty
     private LocalDate activationDate;
 
     private double amountRequested;
 
+    @ReadOnlyProperty
     private Status status;
 
     private ContractType contractType;

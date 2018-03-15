@@ -27,6 +27,12 @@ public class ContractsService {
         return contractRepository.save(contract);
     }
 
+    public Contract updateContract(Contract contract) {
+        // TODO prevent changes to read-only attributes: status and activationDate
+        contractRepository.save(contract);
+        return contract;
+    }
+
     private void approveContract(Contract contract) {
         contract.setStatus(Contract.Status.APPROVED);
         contract.setActivationDate(LocalDate.now());
