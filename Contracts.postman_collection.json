@@ -1,0 +1,189 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Contracts",
+		"_postman_id": "20462b12-f09c-901a-6ce9-28eb6134fdce",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Contract Invalid",
+			"request": {
+				"url": "localhost:8080/api/contracts",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"testContract{{$randomInt}}\",\n\t\"businessNumber\":\"{{$randomInt}}\",\n\t\"amountRequested\":25000.0,\n\t\"contractType\": \"EXPRESS\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Contract",
+			"request": {
+				"url": "localhost:8080/api/contracts",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"testContract{{$randomInt}}\",\n\t\"businessNumber\":\"{{$randomInt}}\",\n\t\"amountRequested\":250000.0,\n\t\"contractType\": \"SALES\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update Contract ",
+			"request": {
+				"url": "localhost:8080/api/contracts/5",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"testContract{{$randomInt}}\",\n\t\"businessNumber\":\"{{$randomInt}}\",\n\t\"amountRequested\":250000.0,\n\t\"contractType\": \"SALES\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get approved Contracts",
+			"request": {
+				"url": {
+					"raw": "localhost:8080/api/contracts?approved=true",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contracts"
+					],
+					"query": [
+						{
+							"key": "approved",
+							"value": "true",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"testSales\",\n\t\"businessNumber\":\"12345\",\n\t\"amountRequested\":25000.0,\n\t\"contractType\": \"SALES\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Contracts ",
+			"request": {
+				"url": {
+					"raw": "localhost:8080/api/contracts?approved=false",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contracts"
+					],
+					"query": [
+						{
+							"key": "approved",
+							"value": "false",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"testSales\",\n\t\"businessNumber\":\"12345\",\n\t\"amountRequested\":25000.0,\n\t\"contractType\": \"SALES\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Contract",
+			"request": {
+				"url": "localhost:8080/api/contracts/3",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"testSales\",\n\t\"businessNumber\":\"12345\",\n\t\"amountRequested\":25000.0,\n\t\"contractType\": \"SALES\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Contract ",
+			"request": {
+				"url": "localhost:8080/api/contracts/3",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"testSales\",\n\t\"businessNumber\":\"12345\",\n\t\"amountRequested\":25000.0,\n\t\"contractType\": \"SALES\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
