@@ -14,7 +14,7 @@ public class ContractsService {
     @Autowired
     ContractRepository contractRepository;
 
-    public Contract createContract(Contract contract) throws Exception {
+    public Contract createContract(Contract contract) throws RequestAmountExceeded {
         if(Contract.ContractType.EXPRESS.equals(contract.getContractType())) {
             if(contract.getAmountRequested() < 50000) {
                 approveContract(contract);
@@ -27,10 +27,18 @@ public class ContractsService {
         return contractRepository.save(contract);
     }
 
-    public Contract updateContract(Contract contract) {
+    public Contract updateContract(Contract updatingContract, Contract existingContract) {
         // TODO prevent changes to read-only attributes: status and activationDate
-        contractRepository.save(contract);
-        return contract;
+        if(updatingContract.getActivationDate() != null &&
+                !updatingContract.getActivationDate().equals(existingContract.getActivationDate())) {
+            updatingContract.setActivationDate(existingContract.getActivationDate());
+        }
+        if(updatingContract.getStatus() != null &&
+                !updatingContract.getStatus().equals(existingContract.getStatus())) {
+            updatingContract.setStatus(existingContract.getStatus());
+        }
+        contractRepository.save(updatingContract);
+        return updatingContract;
     }
 
     private void approveContract(Contract contract) {

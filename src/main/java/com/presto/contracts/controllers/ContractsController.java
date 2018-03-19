@@ -57,11 +57,12 @@ public class ContractsController {
     @ResponseBody
     public ResponseEntity<Contract> updateContract(@PathVariable("id") String contractId,
                                                    @RequestBody Contract contract) {
-        Contract existingContract = contractRepository.findById(Long.valueOf(contractId)).get();
+        Contract existingContract = contractRepository.getOne(Long.valueOf(contractId));
         if(existingContract == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            Contract updatedContract = contractsService.updateContract(contract);
+            contract.setId(existingContract.getId());
+            Contract updatedContract = contractsService.updateContract(contract, existingContract);
             return new ResponseEntity<>(updatedContract, HttpStatus.OK);
         }
     }

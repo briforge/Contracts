@@ -1,6 +1,8 @@
 package com.presto.contracts.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.ReadOnlyProperty;
 
 import javax.persistence.*;
@@ -29,12 +31,10 @@ public class Contract {
     @NotNull
     private String businessNumber;
 
-    @ReadOnlyProperty
     private LocalDate activationDate;
 
     private double amountRequested;
 
-    @ReadOnlyProperty
     private Status status;
 
     private ContractType contractType;
@@ -66,10 +66,12 @@ public class Contract {
         return this;
     }
 
+    @JsonProperty("activationDate")
     public LocalDate getActivationDate() {
         return activationDate;
     }
 
+    @JsonIgnore
     public Contract setActivationDate(LocalDate activationDate) {
         this.activationDate = activationDate;
         return this;
@@ -84,10 +86,12 @@ public class Contract {
         return this;
     }
 
+    @JsonProperty("status")
     public Status getStatus() {
         return status;
     }
 
+    @JsonIgnore
     public Contract setStatus(Status status) {
         this.status = status;
         return this;
